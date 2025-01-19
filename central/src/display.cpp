@@ -23,16 +23,15 @@ void printLocalTime() {
     lcd.println("Connection Err");
     return;
   }
+  
+  lcd.setCursor(0, 0);
+  lcd.println(&timeinfo, "%d/%m");
 
-  lcd.setCursor(8, 0);
-  lcd.println(&timeinfo, "%H:%M:%S");
-
-  lcd.setCursor(0, 1);
-  lcd.println(&timeinfo, "%d/%m/%Y   %Z");
+  lcd.setCursor(16-5, 0);
+  lcd.println(&timeinfo, "%H:%M");
 }
 
 void beginWifi(){
-
   lcd.begin(16,2);
   lcd.backlight();
   lcd.setCursor(0, 0);

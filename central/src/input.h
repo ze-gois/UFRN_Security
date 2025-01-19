@@ -11,7 +11,8 @@ struct InputSequence {
   InputMemory *latter;
 };
 
-static InputSequence *sequence = new InputSequence{nullptr, nullptr};
+// static InputSequence *sequence = new InputSequence{nullptr, nullptr};
+static InputSequence sequence{nullptr, nullptr};
 static unsigned long last_input_time;
 static const unsigned long MAX_IDLE_INPUT_TIME = 3000;
 

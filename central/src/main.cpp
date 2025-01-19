@@ -15,9 +15,9 @@ void setup() {
   // new_command("Whatever","19812019p",secret,secret_loop);
 
   new_command("Refresh time","",nullptr,printLocalTime,2000);
-  new_command("Keypad watcher","",nullptr,detect_key,0);
+  new_command("Keypad watcher","",nullptr,assimilate,0);
   new_command("Handle state","",nullptr,handleState,0);
-  
+
   configTime(UTC_OFFSET, UTC_OFFSET_DST, NTP_SERVER);
 
   Serial.begin(115200);

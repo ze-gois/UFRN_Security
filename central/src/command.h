@@ -15,7 +15,7 @@ typedef struct {
 #define COMMAND_H
 extern void new_once_command(const char * descriptor, const char * pattern, void (*once_function)(void));
 extern void new_command(const char * descriptor, const char * pattern, void (*once_function)(void),void (*loop_function)(void),unsigned long interval);
-extern void assimilate(char key);
+extern void assimilate();
 extern void obliviate();
 extern bool obey(Command cmd);
 extern void patience();

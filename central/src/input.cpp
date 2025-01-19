@@ -18,60 +18,51 @@ void assimilate() {
   if (key == NO_KEY){  
     return;
   }
-  InputMemory* newcommer = new InputMemory{key, sequence->latter, nullptr};
+  InputMemory* newcommer = new InputMemory{key, sequence.latter, nullptr};
   
-  if (sequence->former == nullptr) {
-    sequence->former = newcommer;
+  if (sequence.former == nullptr) {
+    sequence.former = newcommer;
   } else {
-    if (sequence->former->descendant == nullptr) {
-      sequence->former->descendant = newcommer;
+    if (sequence.former->descendant == nullptr) {
+      sequence.former->descendant = newcommer;
     } else {
-      sequence->latter->descendant = newcommer;
+      sequence.latter->descendant = newcommer;
     }
   } 
   
-  sequence->latter = newcommer;
+  sequence.latter = newcommer;
   last_input_time = millis();
 }
 
 bool parecer(const char* wit) {
   int wit_len = strlen(wit);
-  InputMemory* current = sequence->latter;
+  InputMemory* current = sequence.latter;
 
   for (int i = wit_len - 1; i >= 0 && current != nullptr; i--, current = current->ancestral) {
     if (current->c != wit[i]) {
       return false;
     }
   }
+
   return true;
 }
 
 void obliviate() {
-  while (sequence->former) {
-    InputMemory* fared = sequence->former;
-    sequence->former = sequence->former->descendant;
+  while (sequence.former) {
+    InputMemory* fared = sequence.former;
+    sequence.former = sequence.former->descendant;
     delete fared;  // Ensure memory is freed.
   }
-  sequence->latter = nullptr;
+  sequence.latter = nullptr;
 }
 
 void patience() {
-  if ((millis() - last_input_time) > MAX_IDLE_INPUT_TIME && sequence->former) {
+  if ((millis() - last_input_time) > MAX_IDLE_INPUT_TIME && sequence.former) {
     Serial.println("Input timeout, clearing buffer.");
     obliviate();
   }
 }
 
-
-void detect_key() {
+void lastkey() { 
   
-    Serial.println(key);
-    switch (key) {
-      case 'x' :
-        Serial.println("Aaaa");
-        break;
-      default:
-        Serial.println("Xxxxx");
-    }
-  }
 }

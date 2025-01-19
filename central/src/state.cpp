@@ -2,6 +2,7 @@
 #include "state.h"
 #include "display.h"
 #include "input.h"
+#include "log.h"
 
 // Current state of the alarm system
 AlarmState currentState = AlarmState::IDLE;
@@ -28,17 +29,15 @@ void handleState() {
             handleConfigurationState();
             break;
         default:
-            std::cerr << "Unknown state!" << std::endl;
+            log("Unknown state!");
             break;
     }
 }
 
 // State-specific behavior
 void handleIdleState() {
-    std::cout << "System is IDLE (disarmed). Waiting for 'arm' command...\n";
-    // Simulate receiving an "arm" command
     char command;
-    std::cout << "Enter 'a' to ARM the system: ";
+    log("Enter 'a' to ARM the system: ");
     std::cin >> command;
     if (command == 'a') {
         transitionToState(AlarmState::ARMED);
@@ -46,10 +45,10 @@ void handleIdleState() {
 }
 
 void handleArmedState() {
-    std::cout << "System is ARMED. Monitoring sensors...\n";
+    log("System is ARMED. Monitoring sensors...\n");
     // Simulate sensor input or disarm command
     char command;
-    std::cout << "Enter 't' for TRIGGER, 'd' to DISARM: ";
+    log("Enter 't' for TRIGGER, 'd' to DISARM: ");
     std::cin >> command;
     if (command == 't') {
         transitionToState(AlarmState::TRIGGERED);
@@ -59,10 +58,10 @@ void handleArmedState() {
 }
 
 void handleTriggeredState() {
-    std::cout << "ALARM TRIGGERED! Sounding buzzer...\n";
+    log("ALARM TRIGGERED! Sounding buzzer...\n");
     // Simulate disarm command
     char command;
-    std::cout << "Enter 'd' to DISARM: ";
+    log("Enter 'd' to DISARM: ");
     std::cin >> command;
     if (command == 'd') {
         transitionToState(AlarmState::IDLE);
@@ -70,31 +69,49 @@ void handleTriggeredState() {
 }
 
 void handleTamperState() {
-    std::cout << "TAMPER DETECTED! Taking action...\n";
+    log("TAMPER DETECTED! Taking action...\n");
     // Simulate resolving the tamper situation
     transitionToState(AlarmState::IDLE);
 }
 
 void handleFaultState() {
-    std::cout << "FAULT DETECTED! Please check the system...\n";
+    log("FAULT DETECTED! Please check the system...\n");
     // Simulate fault recovery
     transitionToState(AlarmState::IDLE);
 }
 
 void handleConfigurationState() {
-    std::cout << "Entering CONFIGURATION mode...\n";
+    log("Entering CONFIGURATION mode...\n");
     // Simulate configuration setup
     char command;
-    std::cout << "Enter 'e' to EXIT configuration: ";
+    log("Enter 'e' to EXIT configuration: ");
     std::cin >> command;
     if (command == 'e') {
         transitionToState(AlarmState::IDLE);
     }
 }
 
-// State transition logic
+// Main state handler
+std::string stateString(AlarmState alarmState) {
+    switch (alarmState) {
+        case AlarmState::IDLE:
+            return "IDLE";
+        case AlarmState::ARMED:
+            return "ARMED";
+        case AlarmState::TRIGGERED:
+            return "TRIGGERED";
+        case AlarmState::TAMPER:
+            return "TAMPER";
+        case AlarmState::FAULT:
+            return "FAULT";
+        case AlarmState::CONFIGURATION:
+            return "CONFIGURATION";
+        default:
+            return "UNK";
+    }
+}
+
 void transitionToState(AlarmState newState) {
-    std::cout << "Transitioning from " << static_cast<int>(currentState)
-              << " to " << static_cast<int>(newState) << "...\n";
+    logf("Transitioning from %s to %s...\n", stateString(currentState), stateString(newState));
     currentState = newState;
 }
