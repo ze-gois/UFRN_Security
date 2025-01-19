@@ -57,4 +57,3 @@ void beginWifi(){
   lcd.setCursor(0, 1);
   lcd.println("Updating time...");
 }
-

@@ -10,20 +10,6 @@ typedef struct {
   unsigned long latter_call;
 } Command;
 
-struct InputMemory {
-  char c;
-  InputMemory *ancestral;
-  InputMemory *descendant;
-};
-
-struct InputSequence {
-  InputMemory *former;
-  InputMemory *latter;
-};
-
-static InputSequence *sequence = new InputSequence{nullptr, nullptr};
-static unsigned long last_input_time;
-static const unsigned long MAX_IDLE_INPUT_TIME = 3000;
 
 #ifndef COMMAND_H
 #define COMMAND_H
