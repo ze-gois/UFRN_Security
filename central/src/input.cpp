@@ -12,7 +12,12 @@ uint8_t rowPins[ROWS] = { 23, 22, 21, 19}; // Pins connected to R1, R2, R3, R4
 
 Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
 
-void assimilate(char key) {
+void assimilate() {
+  char key = keypad.getKey();
+
+  if (key == NO_KEY){  
+    return;
+  }
   InputMemory* newcommer = new InputMemory{key, sequence->latter, nullptr};
   
   if (sequence->former == nullptr) {
@@ -59,9 +64,7 @@ void patience() {
 
 
 void detect_key() {
-  char key = keypad.getKey();
-
-  if (key != NO_KEY){  
+  
     Serial.println(key);
     switch (key) {
       case 'x' :

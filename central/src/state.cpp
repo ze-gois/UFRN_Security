@@ -1,6 +1,7 @@
 #include <iostream>
 #include "state.h"
 #include "display.h"
+#include "input.h"
 
 // Current state of the alarm system
 AlarmState currentState = AlarmState::IDLE;
