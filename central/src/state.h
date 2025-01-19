@@ -3,7 +3,8 @@
 
 // Define the different states for the alarm system
 enum class AlarmState {
-    IDLE,         
+    IDLE,
+    ARMING,         
     ARMED,        
     TRIGGERED,    
     TAMPER,       
@@ -15,6 +16,7 @@ extern AlarmState currentState;
 
 // Function prototypes
 void handleState();
+void handleArm();
 void handleIdleState();
 void handleArmedState();
 void handleTriggeredState();

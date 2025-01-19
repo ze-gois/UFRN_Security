@@ -2,6 +2,7 @@
 #include <Arduino.h>
 #include <vector>
 #include "./input.h"
+#include "./record.h"
 
 static std::vector<Command>commands = {};
 
@@ -31,13 +32,12 @@ void new_command(const char * descriptor, const char * pattern, void (*once_func
 
 bool obey(Command cmd) {
   if (!parecer(cmd.pattern)) return false;
-
   if (cmd.once_function) {
-    Serial.print(">>> ");
-    Serial.println(cmd.descriptor);
+    recordf(">>> ");
+    recordfln(cmd.descriptor);
     cmd.once_function();
   } else {
-    Serial.println("Command function is null.");
+    recordfln("Command function is null.");
     return false;
   }
 
