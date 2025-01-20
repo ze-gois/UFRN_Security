@@ -8,8 +8,8 @@ char keys[ROWS][COLS] = {
   { '<', '0', '>', 'v' }
 };
 
-uint8_t colPins[COLS] = { 18, 5, 4, 2 }; // Pins connected to C1, C2, C3, C4
-uint8_t rowPins[ROWS] = { 23, 22, 21, 19}; // Pins connected to R1, R2, R3, R4
+uint8_t colPins[COLS] = { 18, 5, 4, 2 };
+uint8_t rowPins[ROWS] = { 23, 22, 21, 19};
 
 Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
 
@@ -56,7 +56,7 @@ void obliviate() {
   while (sequence.former) {
     InputMemory* fared = sequence.former;
     sequence.former = sequence.former->descendant;
-    delete fared;  // Ensure memory is freed.
+    delete fared; 
   }
   sequence.latter = nullptr;
 }
@@ -66,8 +66,4 @@ void patience() {
     recordf("Input timeout, clearing buffer.");
     obliviate();
   }
-}
-
-void lastkey() { 
-  
 }

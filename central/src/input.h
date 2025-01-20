@@ -11,8 +11,8 @@ struct InputSequence {
   InputMemory *latter;
 };
 
-// static InputSequence *sequence = new InputSequence{nullptr, nullptr};
 static InputSequence sequence{nullptr, nullptr};
+// static InputSequence *sequence = new InputSequence{nullptr, nullptr};
 static unsigned long last_input_time;
 static const unsigned long MAX_IDLE_INPUT_TIME = 3000;
 
@@ -26,7 +26,7 @@ extern uint8_t colPins[COLS];
 extern uint8_t rowPins[ROWS];
 
 void detect_key();
-void assimilate(char key);
+char assimilate();
 bool parecer(const char* wit);
 void obliviate();
 void patience();

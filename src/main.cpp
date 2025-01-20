@@ -3,7 +3,7 @@
 #include "lib/net/mqtt.h"
 #include "lib/fs/spiffs.h"
 #include "lib/time/time.h"
-// #include "lib/net/wifi.h"
+#include "lib/net/wifi.h"
 
 #include "main.h"
 

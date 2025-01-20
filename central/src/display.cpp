@@ -1,8 +1,4 @@
 #include "./display.h"
-#include "../lib/net/secrets.h"
-
-#include <WiFi.h>
-#include <LiquidCrystal.h>
 
 LiquidCrystal lcd(12, 27, 26, 25, 33, 32);
 
@@ -17,18 +13,11 @@ void spinner() {
 }
 
 void printLocalTime() {
-  struct tm timeinfo;
-  if (!getLocalTime(&timeinfo)) {
-    lcd.setCursor(0, 1);
-    lcd.println("Connection Err");
-    return;
-  }
-  
   lcd.setCursor(0, 0);
-  lcd.println(&timeinfo, "%d/%m");
+  lcd.println(&time_local, "%d/%m");
 
   lcd.setCursor(16-5, 0);
-  lcd.println(&timeinfo, "%H:%M");
+  lcd.println(&time_local, "%H:%M");
 }
 
 void beginWifi(){

@@ -19,13 +19,7 @@
       "rotate": 270,
       "attrs": {}
     },
-    {
-      "type": "wokwi-pir-motion-sensor",
-      "id": "pir1",
-      "top": 74.07,
-      "left": -984.61,
-      "attrs": {}
-    },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": 71.2, "left": -986.58, "attrs": {} },
     {
       "type": "wokwi-pir-motion-sensor",
       "id": "pir2",

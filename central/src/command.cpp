@@ -6,18 +6,6 @@
 
 static std::vector<Command>commands = {};
 
-void new_once_command(const char * descriptor, const char * pattern, void (*once_function)(void)) {
-  Command command;
-  command.descriptor = descriptor;
-  command.pattern = pattern;
-  command.once_function = once_function;
-  command.loop_function = nullptr;
-  command.interval = 0;
-  command.latter_call = 0;
-  
-  commands.push_back(command);
-}
-
 void new_command(const char * descriptor, const char * pattern, void (*once_function)(void), void (*loop_function)(void), unsigned long interval) {
   Command command;
   command.descriptor = descriptor;
@@ -25,6 +13,18 @@ void new_command(const char * descriptor, const char * pattern, void (*once_func
   command.once_function = once_function;
   command.loop_function = loop_function;
   command.interval = interval;
+  command.latter_call = 0;
+  
+  commands.push_back(command);
+}
+
+void new_once_command(const char * descriptor, const char * pattern, void (*once_function)(void)) {
+  Command command;
+  command.descriptor = descriptor;
+  command.pattern = pattern;
+  command.once_function = once_function;
+  command.loop_function = nullptr;
+  command.interval = 0;
   command.latter_call = 0;
   
   commands.push_back(command);

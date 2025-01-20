@@ -1,6 +1,7 @@
+#include "./time.h"
 #include "./record.h"
 
-bool do_record = true;
+static bool do_record = true;
 
 void record(std::string msg) {
     if (!do_record) return;

@@ -2,7 +2,7 @@
 
 #ifndef RECORD_H
 #define RECORD_H
-extern bool do_record;
+// extern bool do_record;
 #endif
 
 void record(const char *msg);
